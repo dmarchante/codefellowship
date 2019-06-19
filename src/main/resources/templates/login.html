@@ -2,13 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Log In</title>
 </head>
 <body>
-<form action="/login" method="POST">
-    <input type="username">
-    <input type="password">
-
-</form>
+    <form action="/login" method="POST">
+        <label for="username">Username: </label><input name="username" id="username">
+        <label for="password">Password: </label><input name="password" id="password">
+        <input type="submit" />
+    </form>
 </body>
 </html>

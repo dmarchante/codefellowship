@@ -1,34 +1,36 @@
 package com.dmarchante.codefellowship.codefellowship;
 
-//import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Collection;
+import java.util.Date;
 
 @Entity
 public class AppUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
+    private long id;
 
+    @Column(unique = true)
+    private String username;
 
-    private String userName;
     private String password;
     private String firstName;
     private String lastName;
+    private Date birthDate;
+    private String bio;
 
     public AppUser() {}
 
-    public AppUser(String userName, String password, String firstName, String lastName) {
-        this.userName = userName;
+    public AppUser(String username, String password, String firstName, String lastName, Date birthDate, String bio) {
+        this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.bio = bio;
     }
 
     @Override
@@ -43,7 +45,7 @@ public class AppUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.userName;
+        return this.username;
     }
 
     @Override
@@ -64,5 +66,53 @@ public class AppUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 }

@@ -2,9 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Code Fellowship</title>
 </head>
 <body>
+    <h1>Code Fellowship</h1>
+    <div th:if="${p != null}">
 
+    </div>
+    <div th:if="${p == null}">
+        <a th:href="@{/login}">Login</a>
+        <a th:href="@{/signup}">Create account</a>
+    </div>
 </body>
 </html>
