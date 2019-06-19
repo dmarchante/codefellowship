@@ -48,7 +48,14 @@ public class AppUserController {
         return "signup";
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/users")
+    public String getAllUsers(Model m) {
+        Iterable<AppUser> users = appUserRepository.findAll();
+        m.addAttribute("users", users);
+        return "users";
+    }
+
+    @GetMapping("/users/{id}")
     public String getUser(@PathVariable long id, Model m) {
         AppUser user = appUserRepository.findById(id).get();
         m.addAttribute("user", user);
