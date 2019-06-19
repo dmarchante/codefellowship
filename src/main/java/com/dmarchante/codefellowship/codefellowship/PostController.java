@@ -35,10 +35,11 @@ public class PostController {
     }
 
     @PostMapping("/posts/add")
-    public RedirectView addPost(String body, Date timeStamp, Principal p) {
+    public RedirectView addPost(String body, Principal p) {
         Post post = new Post();
         post.body = body;
-        post.timeStamp = timeStamp;
+//        post.timeStamp = timeStamp;
+        post.timeStamp = new Date(System.currentTimeMillis());
         post.user = appUserRepository.findByUsername(p.getName());
         postRepository.save(post);
         return new RedirectView("/posts");

@@ -5,6 +5,9 @@
     <title>Posts</title>
 </head>
 <body>
-
+    <ul th:each="post : ${currentUser.posts}">
+        <li th:text="${post.body}"></li>
+        <li th:text="${post.timeStamp}"></li>
+    </ul>
 </body>
 </html>
