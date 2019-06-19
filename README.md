@@ -3,6 +3,9 @@
   ## Main
     - [Code Fellowship Application](./src/main/java/com.dmarchante.codefellowship.codefellowship/CodeFellowshipApplication.java)
     - [Code Fellowship Controller](./src/main/java/com.dmarchante.codefellowship.codefellowship/CodeFellowshipController.java)
+    - [Post](./src/main/java/com.dmarchante.codefellowship.codefellowship/Post.java)
+    - [Post Controller](./src/main/java/com.dmarchante.codefellowship.codefellowship/PostController.java)
+    - [Post Repository](./src/main/java/com.dmarchante.codefellowship.codefellowship/PostRepository.java)
     - [User](./src/main/java/com.dmarchante.codefellowship.codefellowship/AppUser.java)
     - [User Controller](./src/main/java/com.dmarchante.codefellowship.codefellowship/AppUserController.java)
     - [User Repository](./src/main/java/com.dmarchante.codefellowship.codefellowship/AppUserRepository.java)
@@ -10,7 +13,7 @@
     - [Web Security](./src/main/java/com.dmarchante.codefellowship.codefellowship/WebSecurityConfig.java)
 \
    ## Test
-    - [Songr Application Tests](./src/main/java/com.dmarchante.code401d4.class12.songr/SongrApplicationTests.java)
+    - [SoCode Fellowship Application]gr Application Tests](./src/main/java/com.dmarchante.code401d4.class12.songr/SongrApplicationTests.java)
 
   ## How to run
 

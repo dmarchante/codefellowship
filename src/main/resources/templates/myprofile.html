@@ -6,7 +6,10 @@
 </head>
 <body>
     <h1>Hello, <span th:text="${user.firstName}"></span></h1>
-    <a th:href="@{'/user/' + ${user.id}}">Go to your profile</a>
+    <p>First Name: <span th:text="${user.firstName}"></span></p>
+    <p>Last Name: <span th:text="${user.lastName}"></span></p>
+    <p>DOB: <span th:text="${user.birthDate}"></span></p>
+    <p>Bio: <span th:text="${user.bio}"></span></p>
     <a th:href="@{/logout}">Logout</a>
 </body>
 </html>
