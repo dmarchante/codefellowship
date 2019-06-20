@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.util.List;
 
 @Controller
 public class AppUserController {
@@ -49,16 +51,36 @@ public class AppUserController {
     }
 
     @GetMapping("/users")
-    public String getAllUsers(Model m) {
-        Iterable<AppUser> users = appUserRepository.findAll();
+    public String getAllUsers(Model m, Principal p) {
+        ArrayList<AppUser> users = (ArrayList<AppUser>) appUserRepository.findAll();
+        AppUser currentUser = appUserRepository.findByUsername(p.getName());
+
+        m.addAttribute("principal", p);
         m.addAttribute("users", users);
+
+        users.remove(currentUser);
+
         return "users";
     }
 
     @GetMapping("/users/{id}")
-    public String getUser(@PathVariable long id, Model m) {
+    public String getUser(@PathVariable long id, Model m, Principal p) {
         AppUser user = appUserRepository.findById(id).get();
+
+        m.addAttribute("principal", p);
         m.addAttribute("user", user);
+
         return "userprofile";
+    }
+
+    @PostMapping("/users/{id}/followee")
+    public RedirectView addFollowee(@PathVariable Long id, Principal p) {
+        AppUser currentUser = appUserRepository.findByUsername(p.getName());
+        AppUser newFollowee = appUserRepository.findById(id).get();
+
+        currentUser.getFollowee().add(newFollowee);
+        appUserRepository.save(currentUser);
+
+        return new RedirectView("/users/" + id);
     }
 }

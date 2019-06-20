@@ -12,6 +12,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.sql.Date;
+import java.util.List;
+import java.util.Set;
 
 @Controller
 public class PostController {
@@ -21,16 +23,20 @@ public class PostController {
     @Autowired
     AppUserRepository appUserRepository;
 
-    @GetMapping("/posts")
+    @GetMapping("/feed")
     public String getPosts(Principal p, Model m) {
         AppUser currentUser = appUserRepository.findByUsername(p.getName());
+        Set<AppUser> followee = currentUser.followee;
+//        AppUser followeeName = appUserRepository.findByUsername(followee.getUsername());
 
-        m.addAttribute("currentUser", currentUser);
-        return "posts";
+        m.addAttribute("principal", p);
+        m.addAttribute("followee", followee);
+        return "feed";
     }
 
     @GetMapping("/posts/add")
-    public String getPostCreate() {
+    public String getPostCreate(Principal p, Model m) {
+        m.addAttribute("principal", p);
         return "createpost";
     }
 
@@ -38,17 +44,17 @@ public class PostController {
     public RedirectView addPost(String body, Principal p) {
         Post post = new Post();
         post.body = body;
-//        post.timeStamp = timeStamp;
         post.timeStamp = new Date(System.currentTimeMillis());
         post.user = appUserRepository.findByUsername(p.getName());
         postRepository.save(post);
-        return new RedirectView("/posts");
+        return new RedirectView("/myprofile");
     }
 
     @GetMapping("/posts/{id}")
     public String showPost(@PathVariable long id, Model m, Principal p) {
         Post post = postRepository.findById(id).get();
         if (post.getUser().getUsername().equals(p.getName())) {
+            m.addAttribute("principal", p);
             m.addAttribute("post", post);
             return "post";
         } else {

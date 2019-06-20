@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Users</title>
+    <title>Posts</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- executed by the browser -->
     <link href="/styles.css" rel="stylesheet" />
@@ -10,14 +10,11 @@
 <body>
     <div th:replace="${principal != null} ? ~{fragments/authHeader :: header(principal=${principal})} : ~{fragments/mainHeader:: header}"></div>
 
-    <h1>User List</h1>
-    <div th:each="user : ${users}">
-        <p><span th:text="${user.lastName}"></span>, <span th:text="${user.firstName}"></span></p>
-        <ul th:each="post : ${user.posts}">
+    <div th:each="follow : ${followee}">
+        <ul th:each ="post : ${follow.posts}">
             <li th:text="${post.body}"></li>
             <li th:text="${post.timeStamp}"></li>
         </ul>
-        <a th:href="@{'/users/' + ${user.id}}">Profile</a>
     </div>
 </body>
 </html>
