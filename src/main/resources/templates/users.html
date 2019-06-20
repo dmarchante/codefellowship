@@ -8,7 +8,11 @@
     <h1>User List</h1>
     <div th:each="user : ${users}">
         <p><span th:text="${user.lastName}"></span>, <span th:text="${user.firstName}"></span></p>
-        <a th:href="@{'/users/' + ${user.id}}">Go to user's profile page</a>
+        <ul th:each="post : ${user.posts}">
+            <li th:text="${post.body}"></li>
+            <li th:text="${post.timeStamp}"></li>
+        </ul>
+        <a th:href="@{'/users/' + ${user.id}}">Profile</a>
     </div>
 </body>
 </html>

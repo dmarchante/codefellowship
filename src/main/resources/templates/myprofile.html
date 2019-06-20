@@ -10,6 +10,13 @@
     <p>Last Name: <span th:text="${user.lastName}"></span></p>
     <p>DOB: <span th:text="${user.birthDate}"></span></p>
     <p>Bio: <span th:text="${user.bio}"></span></p>
+    <p>Posts: </p>
+    <ul th:each="post : ${user.posts}">
+        <li th:text="post.body"></li>
+        <li th:text="post.timeStamp"></li>
+    </ul>
+
+    <a th:href="@{/posts/add}">Create post</a>
     <a th:href="@{/logout}">Logout</a>
 </body>
 </html>
