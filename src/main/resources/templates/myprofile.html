@@ -2,9 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>My Profile</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- executed by the browser -->
+    <link href="/styles.css" rel="stylesheet" />
 </head>
 <body>
+    <div th:replace="${principal != null} ? ~{fragments/authHeader :: header(principal=${principal})} : ~{fragments/mainHeader:: header}"></div>
+
     <h1>Hello, <span th:text="${user.firstName}"></span></h1>
     <p>First Name: <span th:text="${user.firstName}"></span></p>
     <p>Last Name: <span th:text="${user.lastName}"></span></p>
@@ -12,11 +17,10 @@
     <p>Bio: <span th:text="${user.bio}"></span></p>
     <p>Posts: </p>
     <ul th:each="post : ${user.posts}">
-        <li th:text="post.body"></li>
-        <li th:text="post.timeStamp"></li>
+        <li th:text="${post.body}"></li>
+        <li th:text="${post.timeStamp}"></li>
     </ul>
 
     <a th:href="@{/posts/add}">Create post</a>
-    <a th:href="@{/logout}">Logout</a>
 </body>
 </html>

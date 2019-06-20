@@ -1,0 +1,9 @@
+<header th:fragment="header(principal)">
+    <a href="/"><h1>Code Fellowship</h1></a>
+    <nav>
+        <a href="/users">Users</a>
+        <a href="/feed">Feed</a>
+        <a href="/logout">Log out</a>
+        <a href="/" th:text="${principal.getName()}"></a>
+    </nav>
+</header>

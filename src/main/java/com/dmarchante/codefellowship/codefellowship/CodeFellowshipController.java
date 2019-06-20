@@ -37,12 +37,13 @@ public class CodeFellowshipController {
     @GetMapping ("/home")
     public String getHomePage(Principal p, Model m) {
         m.addAttribute("principal", p);
-        return "codefellowship";
+        return "home";
     }
 
     @GetMapping ("/myprofile")
     public String getProfilePage(Principal p, Model m) {
         AppUser user = appUserRepository.findByUsername(p.getName());
+        m.addAttribute("principal", p);
         m.addAttribute("user", user);
         return "myprofile";
     }

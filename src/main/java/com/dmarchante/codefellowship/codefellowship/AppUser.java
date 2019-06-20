@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class AppUser implements UserDetails {
@@ -25,6 +26,9 @@ public class AppUser implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     List<Post> posts;
+
+    @OneToMany
+    Set<AppUser> followee;
 
     public AppUser() {}
 
@@ -121,4 +125,12 @@ public class AppUser implements UserDetails {
     }
 
     public List<Post> getPosts() { return posts; }
+
+    public Set<AppUser> getFollowee() {
+        return followee;
+    }
+
+    public void setFollowee(AppUser followee) {
+        this.followee.add(followee);
+    }
 }
